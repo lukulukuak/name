@@ -19,8 +19,6 @@ info.Size = UDim2.new(1,0,1,0)
 info.Position = UDim2.new(0, 0, 1, 0)
 ui.ResetOnSpawn = false
 ui.IgnoreGuiInset = false
-btn.MouseButton1Click:Connect(click)
-game:GetService("ContextActionService"):BindAction("anti-void" .. plr.Name, click, false, Enum.KeyCode.B)
 
 function create()
 	local part = Instance.new("Part", workspace)
@@ -67,6 +65,9 @@ function click()
 		remove()
 	end
 end
+
+btn.MouseButton1Click:Connect(click)
+game:GetService("ContextActionService"):BindAction("anti-void", click, false, Enum.KeyCode.B)
 
 plr.CharacterAdded:Connect(function()
 	chr = plr.Character
