@@ -67,8 +67,11 @@ function click()
 end
 
 btn.MouseButton1Click:Connect(click)
-game:GetService("ContextActionService"):BindAction("anti-void1", click, false, Enum.KeyCode.B, Enum.UserInputState.Began)
-game:GetService("ContextActionService"):BindAction("anti-void2", click, false, Enum.KeyCode.B, Enum.UserInputState.End)
+game:GetService("UserInputService").InputBegan:Connect(function(i)
+	if i.KeyCode == Enum.KeyCode.B then
+		click()
+	end
+end)
 
 plr.CharacterAdded:Connect(function()
 	chr = plr.Character
