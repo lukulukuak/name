@@ -1,4 +1,4 @@
-local plr = game.Players.gsghfbhdrhdfgbhd
+local plr = game.Players.LocalPlayer
 local ui = Instance.new("ScreenGui", plr.PlayerGui)
 local btn = Instance.new("TextButton", ui)
 local chr = plr.Character
