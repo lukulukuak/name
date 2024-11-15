@@ -1,4 +1,3 @@
-local players = game.Players:GetPlayers()
 local plr = game.Players.LocalPlayer
 local chr = plr.Character or plr.CharacterAdded:Wait()
 local on = false
@@ -7,11 +6,11 @@ plr.CharacterAdded:Connect(function(ch)
     chr = ch
 end)
 
-for _, plyr in ipairs(players) do
+for _, plyr in ipairs(game:GetPlayers()) do
     if plyr ~= plr then
         if not plyr.Character then plyr.CharacterAdded:Wait() end
         if not plyr.Character:FindFirstChild("HumanoidRootPart") then plyr.Character:WaitForChild("HumanoidRootPart") end
-        local gui = Instance.new("BillboardGui", plyr.Character)
+        local gui = Instance.new("BillboardGui", plyr.Character.HumanoidRootPart)
         local name = Instance.new("TextLabel", gui)
         local dist = Instance.new("TextLabel", gui)
         local dista = (plyr.Character.HumanoidRootPart.Position - chr.HumanoidRootPart.Position).Magnitude
@@ -42,7 +41,7 @@ game.Players.PlayerAdded:Connect(function(plyr)
     if plyr ~= plr then
         if not plyr.Character then plyr.CharacterAdded:Wait() end
         if not plyr.Character:FindFirstChild("HumanoidRootPart") then plyr.Character:WaitForChild("HumanoidRootPart") end
-        local gui = Instance.new("BillboardGui", plyr.Character)
+        local gui = Instance.new("BillboardGui", plyr.Character.HumanoidRootPart)
         local name = Instance.new("TextLabel", gui)
         local dist = Instance.new("TextLabel", gui)
         local dista = (plyr.Character.HumanoidRootPart.Position - chr.HumanoidRootPart.Position).Magnitude
@@ -66,13 +65,12 @@ game.Players.PlayerAdded:Connect(function(plyr)
         gui.Size = UDim2.new(5, 0, 2, 0)
         gui.Enabled = on
         gui.Name = "esp"
-        table.insert(players, plyr)
     end
 end)
 
 game:GetService("UserInputService").InputBegan:Connect(function(i)
     if i.KeyCode == Enum.KeyCode.N then
-        for _, plyr in ipairs(players) do
+        for _, plyr in ipairs(game:GetPlayers()) do
             if plyr:FindFirstChild("esp") and plyr:FindFirstChild("esp"):IsA("BillboardGui") then
                 on = not on
                 plyr.esp.Enabled = on
@@ -80,7 +78,7 @@ game:GetService("UserInputService").InputBegan:Connect(function(i)
                 if plyr ~= plr then
                     if not plyr.Character then plyr.CharacterAdded:Wait() end
                     if not plyr.Character:FindFirstChild("HumanoidRootPart") then plyr.Character:WaitForChild("HumanoidRootPart") end
-                    local gui = Instance.new("BillboardGui", plyr.Character)
+                    local gui = Instance.new("BillboardGui", plyr.Character.HumanoidRootPart)
                     local name = Instance.new("TextLabel", gui)
                     local dist = Instance.new("TextLabel", gui)
                     local dista = (plyr.Character.HumanoidRootPart.Position - chr.HumanoidRootPart.Position).Magnitude
