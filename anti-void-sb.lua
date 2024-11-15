@@ -19,25 +19,6 @@ info.Size = UDim2.new(1,0,1,0)
 info.Position = UDim2.new(0, 0, 1, 0)
 ui.ResetOnSpawn = false
 ui.IgnoreGuiInset = false
-
-function click()
-	if on == false then
-		on = true
-		btn.BackgroundColor3 = Color3.fromRGB(34, 47, 34)
-		btn.TextColor3 = Color3.fromRGB(215, 255, 215)
-		info.BackgroundColor3 = btn.BackgroundColor3
-		info.TextColor3 = btn.TextColor3
-		create()
-	end
-	if on == true then
-		on = false
-		btn.BackgroundColor3 = Color3.fromRGB(47, 34, 34)
-		btn.TextColor3 = Color3.fromRGB(255, 215, 215)
-		info.BackgroundColor3 = btn.BackgroundColor3
-		info.TextColor3 = btn.TextColor3
-		remove()
-	end
-end
 btn.MouseButton1Click:Connect(click)
 game:GetService("ContextActionService"):BindAction("anti-void" .. plr.Name, click, false, Enum.KeyCode.B)
 
@@ -68,7 +49,27 @@ function remove()
 	end
 end
 
+function click()
+	if on == false then
+		on = true
+		btn.BackgroundColor3 = Color3.fromRGB(34, 47, 34)
+		btn.TextColor3 = Color3.fromRGB(215, 255, 215)
+		info.BackgroundColor3 = btn.BackgroundColor3
+		info.TextColor3 = btn.TextColor3
+		create()
+	end
+	if on == true then
+		on = false
+		btn.BackgroundColor3 = Color3.fromRGB(47, 34, 34)
+		btn.TextColor3 = Color3.fromRGB(255, 215, 215)
+		info.BackgroundColor3 = btn.BackgroundColor3
+		info.TextColor3 = btn.TextColor3
+		remove()
+	end
+end
+
 plr.CharacterAdded:Connect(function()
 	chr = plr.Character
 	hrp = chr:WaitForChild("HumanoidRootPart")
 end)
+
