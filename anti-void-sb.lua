@@ -17,7 +17,7 @@ function create()
 	part.FrontSurface = "Studs"
 	part.BackSurface = "Studs"
 	while wait() do
-		part.Position = Vector3.new(hrp.Position.X, -9.25, hrp.Position.Z)
+		part.Position = Vector3.new(hrp.Position.X, -9, hrp.Position.Z)
 		if on == false then
 			break
 		end
