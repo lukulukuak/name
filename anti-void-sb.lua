@@ -41,7 +41,6 @@ function click()
 	end
 end
 
-btn.MouseButton1Click:Connect(click)
 game:GetService("UserInputService").InputBegan:Connect(function(i)
 	if i.KeyCode == Enum.KeyCode.B then
 		click()
