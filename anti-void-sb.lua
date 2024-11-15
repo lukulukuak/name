@@ -41,11 +41,6 @@ end
 btn.MouseButton1Click:Connect(click)
 game:GetService("ContextActionService"):BindAction("anti-void" .. plr.Name, click, false, Enum.KeyCode.B)
 
-game.UserInputService.InputBegan:Connect(function(i)
-	if i.KeyCode == Enum.KeyCode.B then
-		btn
-	end
-end)
 function create()
 	local part = Instance.new("Part", workspace)
 	part.Name = "voidfloat"
