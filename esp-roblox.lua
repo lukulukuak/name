@@ -1,6 +1,7 @@
 local players = game.Players:GetPlayers()
 local plr = game.Players.LocalPlayer
 local chr = plr.Character or plr.CharacterAdded:Wait()
+local on = false
 
 plr.CharacterAdded:Connect(function(ch)
     chr = ch
@@ -9,6 +10,7 @@ end)
 for _, plyr in ipairs(players) do
     if plyr ~= plr then
         if not plyr.Character then plyr.CharacterAdded:Wait() end
+        if not plyr.Character:FindFirstChild("HumanoidRootPart") then plyr.Character:WaitForChild("HumanoidRootPart") end
         local gui = Instance.new("BillboardGui", plyr.Character)
         local name = Instance.new("TextLabel", gui)
         local dist = Instance.new("TextLabel", gui)
@@ -31,7 +33,7 @@ for _, plyr in ipairs(players) do
         gui.AlwaysOnTop = true
         gui.LightInfluence = 0
         gui.Size = UDim2.new(5, 0, 2, 0)
-        gui.Enabled = false
+        gui.Enabled = on
         gui.Name = "esp"
     end
 end
@@ -39,6 +41,7 @@ end
 game.Players.PlayerAdded:Connect(function(plyr)
     if plyr ~= plr then
         if not plyr.Character then plyr.CharacterAdded:Wait() end
+        if not plyr.Character:FindFirstChild("HumanoidRootPart") then plyr.Character:WaitForChild("HumanoidRootPart") end
         local gui = Instance.new("BillboardGui", plyr.Character)
         local name = Instance.new("TextLabel", gui)
         local dist = Instance.new("TextLabel", gui)
@@ -61,7 +64,7 @@ game.Players.PlayerAdded:Connect(function(plyr)
         gui.AlwaysOnTop = true
         gui.LightInfluence = 0
         gui.Size = UDim2.new(5, 0, 2, 0)
-        gui.Enabled = false
+        gui.Enabled = on
         gui.Name = "esp"
         table.insert(players, plyr)
     end
@@ -71,10 +74,12 @@ game:GetService("UserInputService").InputBegan:Connect(function(i)
     if i.KeyCode == Enum.KeyCode.N then
         for _, plyr in ipairs(players) do
             if plyr:FindFirstChild("esp") and plyr:FindFirstChild("esp"):IsA("BillboardGui") then
-                plyr.esp.Enabled = not plyr.esp.Enabled
+                on = not on
+                plyr.esp.Enabled = on
             elseif not plyr:FindFirstChild("esp") then
                 if plyr ~= plr then
                     if not plyr.Character then plyr.CharacterAdded:Wait() end
+                    if not plyr.Character:FindFirstChild("HumanoidRootPart") then plyr.Character:WaitForChild("HumanoidRootPart") end
                     local gui = Instance.new("BillboardGui", plyr.Character)
                     local name = Instance.new("TextLabel", gui)
                     local dist = Instance.new("TextLabel", gui)
@@ -97,7 +102,7 @@ game:GetService("UserInputService").InputBegan:Connect(function(i)
                     gui.AlwaysOnTop = true
                     gui.LightInfluence = 0
                     gui.Size = UDim2.new(5, 0, 2, 0)
-                    gui.Enabled = false
+                    gui.Enabled = on
                     gui.Name = "esp"
                 end     
             end
