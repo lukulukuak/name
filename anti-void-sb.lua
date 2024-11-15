@@ -52,3 +52,4 @@ plr.CharacterAdded:Connect(function()
 	hrp = chr:WaitForChild("HumanoidRootPart")
 end)
 
+--anti-void-sb.lua
